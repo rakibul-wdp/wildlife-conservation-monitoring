@@ -97,3 +97,32 @@ CREATE TABLE product_codes (
   code CHAR(10)  -- সবসময় ১০ অক্ষর জায়গা নেবে, কম হলে স্পেস দিয়ে পূরণ করবে
 );
 ```
+
+### 5 How can you calculate aggregate functions like COUNT(), SUM(), and AVG() in PostgreSQL?
+
+- COUNT() ফাংশন: কল্পনা করুন, একটা ই-কমার্স ডাটাবেস এর প্রোডাক্ট টেবিল এ, একটা প্রোডাক্ট কতগুলো আছে বা এভেইল্যাবল আছে, সেটা জানতে হবে, সেক্ষেত্রে COUNT ফাংশন ব্যবহার করা যায়।
+
+উদাহরণ: স্টোরের প্রোডাক্ট গণনা
+
+```sql
+SELECT COUNT(*) AS total_products FROM products;
+```
+
+- SUM() ফাংশন: যেসব কলামের মান সংখ্যা আকারে বা INT, এই সমস্ত কলামের মানের যোগফল বের করার জন্য, SUM ফাংশন ব্যবহার করা যায়।
+
+উদাহরণ: অর্ডারের মোট মূল্য
+
+```sql
+SELECT SUM(price) AS total_revenue FROM orders;
+```
+
+- AVG() ফাংশন: এটা অনেকটা SUM ফাংশন এর মতোই, সংখ্যা আকারের বা INT মান এর গড় বের করার জন্য ব্যবহার করা হয়।
+
+উদাহরণ: গড় তাপমাত্রা
+
+```sql
+-- এই সপ্তাহের গড় তাপমাত্রা
+SELECT AVG(temperature) AS avg_temperature
+FROM weather_data
+WHERE date BETWEEN '2025-05-19' AND '2025-05-26';
+```
