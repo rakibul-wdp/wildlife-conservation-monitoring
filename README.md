@@ -14,9 +14,9 @@ CREATE DATABASE my_db;
 
 ```sql
 CREATE TABLE users (
-    user_id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(250) NOT NULL
+  user_id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(250) NOT NULL
 );
 ```
 
@@ -41,15 +41,39 @@ INSERT INTO users (name, email) VALUES ('Abul', 'abul@gmail.com');
 
 ```sql
 CREATE TABLE students (
-id SERIAL PRIMARY KEY,
-name VARCHAR(100),
-class VARCHAR(20),
-roll INT
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100),
+  class VARCHAR(20),
+  roll INT
 );
 
 CREATE TABLE teachers (
-id SERIAL PRIMARY KEY,
-name VARCHAR(100),
-subject VARCHAR(50)
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100),
+  subject VARCHAR(50)
+);
+```
+
+### 3 Explain the Primary Key and Foreign Key concepts in PostgreSQL.
+
+প্রাইমারি কি: একটা টেবিল এর প্রতিটি ডাটা বা রো বা রেকর্ডকে আলাদাভাবে বা ইউনিকলি আইডেন্টিফাই বা সনাক্ত করার জন্য
+ব্যাবহৃত একটা কলাম বা কলাম এর গ্রূপ। এক কোথায় এটার মাদ্ধমে আপনি একটা নির্দিষ্ট রো কেই বুঝাতে পারবেন বা ধরতে পারবেন।
+
+ফরেন কি: এটি একটা টেবিল এর কলাম, যেটা কিনা আবার অন্য একটা টেবিল এর প্রাইমারি কি এর সাথে সম্পর্ক স্থাপন করে। মূল ব্যাপার টা হলো একটা টেবিল এর সাথে আরেকটা টেবিল এর রেলশন।
+
+নিচে প্রাইমারি কি এবং ফরেন কি এর উদাহরণ দেয়া হলো:
+
+```sql
+CREATE TABLE students (
+  student_id INT PRIMARY KEY,  -- এটাই প্রাইমারি কি
+  name VARCHAR(100),
+  age INT
+);
+
+CREATE TABLE exam_results (
+  result_id INT PRIMARY KEY,
+  student_id INT,  -- এটাই ফরেন কি
+  marks INT,
+  FOREIGN KEY (student_id) REFERENCES students(student_id)
 );
 ```
