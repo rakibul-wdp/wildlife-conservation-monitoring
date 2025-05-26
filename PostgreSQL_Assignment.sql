@@ -64,3 +64,11 @@ SELECT s.common_name
 FROM species s
 LEFT JOIN sightings si ON s.species_id = si.species_id
 WHERE si.sighting_id IS NULL;
+
+-- Problem 6
+SELECT sp.common_name, si.sighting_time, r.name
+FROM sightings si
+JOIN species sp ON si.species_id = sp.species_id
+JOIN rangers r ON si.ranger_id = r.ranger_id
+ORDER BY si.sighting_time DESC
+LIMIT 2;
