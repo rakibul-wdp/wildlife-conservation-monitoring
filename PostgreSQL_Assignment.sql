@@ -58,3 +58,9 @@ FROM rangers r
 JOIN sightings s ON r.ranger_id = s.ranger_id
 GROUP BY r.name
 ORDER BY r.name ASC;
+
+-- Problem 5
+SELECT s.common_name
+FROM species s
+LEFT JOIN sightings si ON s.species_id = si.species_id
+WHERE si.sighting_id IS NULL;
